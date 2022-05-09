@@ -1,42 +1,55 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+html {
+  font-family: 'Koulen', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0 auto;
+  background-color: #ECE9EC;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-image: url(https://c.tenor.com/epNMHGvRyHcAAAAd/gigachad-chad.gif);
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 95%;
+  height: 610px;
+  padding-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Koulen', cursive;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* CSS TEXT HEADER*/
+
+.hero h1 {
+  font-size: 70px; 
+  font-weight: bold; 
+  letter-spacing: -1px; 
+  line-height: 1; 
+  text-align: left;
+  color: #101E29;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero h2 {
+   font-size: 20px; 
+   font-weight: 10; 
+   line-height: 20px; 
+   margin: 0 0 50px; 
+   text-align: left;
+   color: #101E29;
 }
 
-button {
-  font-size: calc(10px + 2vmin);
+.hero p {
+  color: #101E29; 
+  width: 40%;
+  font-size: 12px; 
+  line-height: 24px;
+  margin: 0 0 24px;
+  text-align: justify; 
+  text-justify: inter-word;
 }
