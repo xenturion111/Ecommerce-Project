@@ -59,7 +59,7 @@
 	
 	color: white;
 	font-weight: 300;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Koulen', cursive;
 	font-size: 22px;
 	line-height: 38px;
 
@@ -94,4 +94,11 @@
 
 .Title {
     text-align: center;
+}
+
+
+.filtering {
+  margin: auto;
+  width: 30%;
+  padding: 10px;
 }

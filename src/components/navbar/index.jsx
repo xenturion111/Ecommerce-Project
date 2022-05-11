@@ -16,6 +16,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Logo from '../../assets/image/Logo.png'
+import NavLink from './link/index'
+import {Link} from 'react-router-dom'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -99,8 +101,7 @@ const Navbar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link  style={{ textDecoration: 'none', color: '#101E29' }} to='/login' className='navLink'>Login</Link></MenuItem>
     </Menu>
   );
 
@@ -125,7 +126,6 @@ const Navbar = () => {
         <p>Home</p>
       </MenuItem>
       <MenuItem>
-        <p>Shop</p>
       </MenuItem>
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -183,12 +183,8 @@ const Navbar = () => {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, color: '#101E29', fontFamily: 'Koulen', paddingRight: 2}}>
-              <a>Home</a>
-            </Box>
-
             <Box sx={{ display: { xs: 'none', md: 'flex' }, color: '#101E29', fontFamily: 'Koulen'}}>
-             <a>Shop</a>
+              <NavLink />
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex',}}}>
