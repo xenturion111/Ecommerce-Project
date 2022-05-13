@@ -1,68 +1,39 @@
-import React from 'react'
+import { useContext, useState, useEffect } from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import {delItem} from '../../store/action/action'
 import Buttons from '../../components/button/index'
+import { NavLink } from 'react-router-dom';
 import './index.css'
 
 const Cart = () => {
   const state = useSelector((state) => state.addItem);
   const dispatch = useDispatch();
-  
-  const handleClose = (product) => {
-    dispatch(delItem(product));
-  } 
+  let total = 0;
+  // const handleClose = (product) => {
+  //   dispatch(delItem(product));
+  // } 
 
   const cartItems = (cartItem) => {
+    total += cartItem.price;
    return (
     <>
-        <h1>Shopping Cart</h1>
+       
+    <div className="shopping-cart" key={cartItem.id}>
 
-    <div class="shopping-cart" key={cartItem.id}>
-
-    <div class="column-labels">
-      <label class="product-image">Image</label>
-      <label class="product-details">Product</label>
-      <label class="product-price">Price</label>
-      <label class="product-quantity">Quantity</label>
-      <label class="product-removal">Remove</label>
-      <label class="product-line-price">Total</label>
-    </div>
-
-    <div class="product">
-      <div class="product-image">
+    <div className="product">
+      <div className="product-image">
         <img src={cartItem.image} />
       </div>
-      <div class="product-details">
-        <div class="product-title">{cartItem.title}</div>
-        <p class="product-description">{cartItem.description}</p>
+      <div className="product-details">
+        <div className="product-title">{cartItem.title}</div>
+        <p className="product-description">{cartItem.description}</p>
       </div>
-      <div class="product-price">{cartItem.price}</div>
-      <div class="product-quantity">
-        {/* <input type="number" value="1" min="1"> */}
+      <div className="product-price">{cartItem.price}</div>
+      <div className="product-quantity">
+        <input type="number" value={1} min={1} max={10} />
       </div>
-      <Buttons text="Remove" onclick={() => handleClose(cartItem)}/>
+      <Buttons text="Remove" onClick={() => delItem(cartItem.id)}/>
     </div>
-
-    <div class="totals">
-      <div class="totals-item">
-        <label>Subtotal</label>
-        <div class="totals-value" id="cart-subtotal">71.97</div>
-      </div>
-      <div class="totals-item">
-        <label>Tax (5%)</label>
-        <div class="totals-value" id="cart-tax">3.60</div>
-      </div>
-      <div class="totals-item">
-        <label>Shipping</label>
-        <div class="totals-value" id="cart-shipping">15.00</div>
-      </div>
-      <div class="totals-item totals-item-total">
-        <label>Grand Total</label>
-        <div class="totals-value" id="cart-total">90.57</div>
-      </div>
-    </div>
-        
-      <button class="checkout">Checkout</button>
 
 </div>
     </>
@@ -81,8 +52,28 @@ const Cart = () => {
 
   return (
     <div>
+     <h1>Shopping Cart</h1>
+      <div className="column-labels">
+      <label className="product-image">Image</label>
+      <label className="product-details">Product</label>
+      <label className="product-price">Price</label>
+      <label className="product-quantity">Quantity</label>
+      <label className="product-removal">Remove</label>
+      <label className="product-line-price">Total</label>
+    </div>
       {state.length === 0 && emptyCart()}
       {state.length !== 0 && state.map(cartItems)}
+      
+      <div className="totals">
+
+      <div className="totals-item totals-item-total">
+        <label>Grand Total</label>
+        <div className="totals-value" id="cart-total">{total}</div>
+      </div>
+    </div>
+      <NavLink to="/">
+        <button className="checkout">Checkout</button>
+      </NavLink>
     </div>
   )
 }

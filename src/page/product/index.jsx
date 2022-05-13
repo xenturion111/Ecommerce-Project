@@ -23,7 +23,7 @@ const ProductDetail = () => {
       }
       getProduct();
       // dispatch(fetchProduct(id));
-    }, [])
+    }, [id])
 
 
     const dispatch = useDispatch();

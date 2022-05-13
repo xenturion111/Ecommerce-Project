@@ -5,6 +5,7 @@ const initialState = {
   };
   
   const reducers = (state = initialState, action) => {
+    const product = action.payload;
     switch (action.type) {
       case "SET_PRODUCTS":
         return {
@@ -22,18 +23,36 @@ const initialState = {
           isLoading: action.payload,
         };
       case "ADDITEM":
-         return {
-           addItem: [
-              ...state.addItem,
-              action.payload,
-           ]
-         }
+         //  return {
+        //    addItem: [
+        //       ...state.addItem,
+        //       action.payload,
+        //    ]
+        //  }
+          {
+          const inCart = state.addItem.find(
+            (product) => product.id === action.payload.id
+        );
+        
+        return {
+            ...state,
+            addItem: inCart ? state.addItem.map((product) => product.id === action.payload.id ? {
+              ...product, qty: product.qty + 1}
+              : product
+            ) : [...state.addItem, action.payload],
+          };
+      }
         break;
       case "DELITEM":
+        // return {
+        //   addItem: state = state.addItem.filter((addItem)=> {
+        //     return addItem.id !== action.payload.id;
+        //   })
+          
+        // }
         return {
-          addItem: state = state.addItem.filter((addItem)=> {
-            return addItem.id !== action.payload.id;
-          })
+          ...state,
+          addItem: state.addItem.filter((product) => product.id !== action.payload.id),
         }
         break;
       //   case "DELITEM":

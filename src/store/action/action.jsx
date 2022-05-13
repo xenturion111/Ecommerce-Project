@@ -37,6 +37,13 @@ export const delItem = (product) => {
   }
 }
 
+export const addCart = (payload) => {
+  return {
+    type: "ADDCART",
+    payload,
+  }
+}
+
 export const fetchProducts = () => async (dispatch) => {
   try {
     const res = await axios.get("https://fakestoreapi.com/products");
@@ -48,6 +55,17 @@ export const fetchProducts = () => async (dispatch) => {
     console.log(error);
   }
 };
+// export const fetchCart = () => async (dispatch) => {
+//   try {
+//     const res = await axios.post("https://fakestoreapi.com/carts");
+//     // console.log(res.data.results);
+//     await dispatch(setIsLoading(true));
+//     await dispatch(addCart(res.data));
+//     await dispatch(setIsLoading(false));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // export const fetchProduct = (id) => async (dispatch) => {
 //   try {

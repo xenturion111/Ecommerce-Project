@@ -202,6 +202,7 @@ const Navbar = () => {
                   <ShoppingCartCheckoutIcon sx={{color: '#101E29'}}/>
                 </Badge>
               </IconButton>
+              </Link>
               <IconButton
                 size="large"
                 edge="end"
@@ -213,7 +214,6 @@ const Navbar = () => {
               >
                 <AccountCircle sx={{color: '#101E29'}} />
               </IconButton>
-            </Link>
             </Box>
 
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
