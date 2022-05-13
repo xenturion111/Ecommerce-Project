@@ -1,3 +1,7 @@
 # Ecommerce-Project
 
-masih sangat banyak bug, dan sedang dalam perbaikan...
+Demo Link : https://knockoutxgicachad.netlify.app/
+
+- npm install vite ⚡
+- npm install 🦾
+- npm run dev 😈
