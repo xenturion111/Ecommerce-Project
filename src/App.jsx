@@ -6,6 +6,7 @@ import Product from './page/product/index'
 import Profile from './page/profile/index'
 import ProtectedRoute from './components/navbar/ProtectedRoute'
 import Login from './page/login/index'
+import Cart from './page/cart/index'
 import NavbarLayout from './components/outlet/index'
 import {  Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,11 @@ const App = () =>  {
             <Route path="/Products/:id" element={ 
                <ProtectedRoute>
                 <Product />
+              </ProtectedRoute>
+            } />
+            <Route path="/Cart" element={ 
+               <ProtectedRoute>
+                <Cart />
               </ProtectedRoute>
             } />
             <Route

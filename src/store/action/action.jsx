@@ -17,6 +17,20 @@ export const setIsLoading = (payload) => ({
 });
 
 
+export const addItem = (product) => {
+  return {
+    type: "ADDITEM",
+    payload: product,
+  }
+}
+
+export const delItem = (product) => {
+  return {
+    type: "DELITEM",
+    payload: product,
+  }
+}
+
 export const fetchProduct = () => async (dispatch) => {
   try {
     const res = await axios.get("https://fakestoreapi.com/products");

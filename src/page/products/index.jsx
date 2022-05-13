@@ -41,7 +41,7 @@ const Products = () => {
                   <span className="productCategory">{data.category}</span>
                   <p className="productDesc">{data.description}</p>
                   
-                  <NavLink style={{textDecoration: 'none'}} to={`/products/${data.id}`} class>
+                  <NavLink style={{textDecoration: 'none'}} to={`/products/${data.id}`}>
                     <Buttons text='BUY' />
                   </NavLink>
                   <br />

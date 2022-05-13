@@ -1,6 +1,6 @@
 const initialState = {
     products: [],
-    // cart: [],
+    addItem: [],
   };
   
   const reducers = (state = initialState, action) => {
@@ -15,21 +15,21 @@ const initialState = {
           ...state,
           isLoading: action.payload,
         };
-      // case "ADDITEM":
-      //     const exist = state.find((x) => x.id === product.id)
-      //     if(exist) {
-      //       return state.map((x) => x.id === product.id ? {...x, qty: x.qty + 1 }: x);
-      //     } else {
-      //       const product = action.payload;
-      //       return [
-      //         ...state,
-      //         {
-      //           ...product,
-      //             qty: 1,
-      //         }
-      //       ]
-      //     }
-      //     break;
+      case "ADDITEM":
+         return {
+           addItem: [
+              ...state.addItem,
+              action.payload,
+           ]
+         }
+        break;
+      case "DELITEM":
+        return {
+          addItem: state = state.addItem.filter((addItem)=> {
+            return addItem.id !== action.payload.id;
+          })
+        }
+        break;
       //   case "DELITEM":
       //       const exist1 = state.find((x) => x.id === product.id)
       //       if(exist1.qty === 1) {

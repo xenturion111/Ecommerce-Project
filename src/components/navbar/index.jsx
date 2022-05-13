@@ -80,6 +80,8 @@ const Navbar = () => {
     handleMobileMenuClose();
   };
 
+  const state = useSelector((state) => state.addItem)
+
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -153,20 +155,6 @@ const Navbar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-    <MenuItem>
-        <p>Home</p>
-      </MenuItem>
-      <MenuItem>
-      </MenuItem>
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <ShoppingCartCheckoutIcon />
-          </Badge>
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
-
     </Menu>
   );
   return (
@@ -208,8 +196,9 @@ const Navbar = () => {
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex',}}}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
+            <Link to='/Cart'>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={state.length} color="error">
                   <ShoppingCartCheckoutIcon sx={{color: '#101E29'}}/>
                 </Badge>
               </IconButton>
@@ -224,6 +213,7 @@ const Navbar = () => {
               >
                 <AccountCircle sx={{color: '#101E29'}} />
               </IconButton>
+            </Link>
             </Box>
 
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
