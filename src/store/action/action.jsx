@@ -29,7 +29,6 @@ export const fetchProduct = () => async (dispatch) => {
   }
 };
 
-
 // export const ProductDetail = () => async (dispatch) => {
 //   try {
 //     const res = await axios.get(`https://fakestoreapi.com/products/${id}`);

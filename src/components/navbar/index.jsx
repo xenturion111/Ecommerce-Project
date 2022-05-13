@@ -17,7 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Logo from '../../assets/image/Logo.png'
 import NavLink from './link/index'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -63,7 +63,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -82,6 +81,12 @@ const Navbar = () => {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   const menuId = 'primary-search-account-menu';
@@ -102,6 +107,9 @@ const Navbar = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}><Link  style={{ textDecoration: 'none', color: '#101E29' }} to='/login' className='navLink'>Login</Link></MenuItem>
+      {localStorage.getItem("token") && (
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      )} 
     </Menu>
   );
 
