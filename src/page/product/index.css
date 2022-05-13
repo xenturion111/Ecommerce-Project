@@ -17,11 +17,11 @@
 }
 
 .left-column img {
-    width: 100%;
-    position: absolute;
+    width: 80%;
+    height: 80%;
+    position: relative;
     left: 0;
     top: 0;
-    opacity: 0;
     transition: all 0.3s ease;
   }
    

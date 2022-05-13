@@ -69,8 +69,19 @@ const Cart = () => {
    )
   }
 
+  const emptyCart = () => {
+    <>
+      <div>
+        <h1>
+          Your Cart is empty
+        </h1>
+      </div>
+    </>
+  }
+
   return (
     <div>
+      {state.length === 0 && emptyCart()}
       {state.length !== 0 && state.map(cartItems)}
     </div>
   )

@@ -1,18 +1,19 @@
-import React, { useEffect, setFilter } from 'react';
+import React, { useEffect, setFilter, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { fetchProduct } from '../../store/action/action'
+import { fetchProducts } from '../../store/action/action'
 import './index.css'
 import Buttons from '../../components/button/index'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
+import Spinner from '../../components/loading/spinner'
 
 const Products = () => {
   const dispatch = useDispatch();
   const {products, isLoading} = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(fetchProduct());
+    dispatch(fetchProducts());
   }, []);
   return (
     <div>
@@ -26,11 +27,7 @@ const Products = () => {
               <Button style= {{color: '#101E29', fontFamily: 'Koulen'}} variant="text">Electronic</Button>
             </Stack>
         </div>
-        
-      {isLoading ? (
-        <h1>Sedang Loading</h1>
-      ) : (
-        // <p>{JSON.stringify(members, null, 4)}</p>
+      {isLoading === false ? (
         <div className='allProducts'>
           {products.map((data) => {
             return (
@@ -52,6 +49,9 @@ const Products = () => {
             );
           })}
           </div>
+      ) : (
+        // <p>{JSON.stringify(members, null, 4)}</p>
+        <Spinner />
       )}
     </div>
   )

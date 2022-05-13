@@ -5,6 +5,12 @@ export const setProducts = (payload) => ({
   payload,
 });
 
+
+export const setProduct = (payload) => ({
+  type: "SET_PRODUCT",
+  payload,
+});
+
 // export const setProduct = (payload) => ({
 //   type: "set_PRODUCTS",
 //   payload,
@@ -31,7 +37,7 @@ export const delItem = (product) => {
   }
 }
 
-export const fetchProduct = () => async (dispatch) => {
+export const fetchProducts = () => async (dispatch) => {
   try {
     const res = await axios.get("https://fakestoreapi.com/products");
     // console.log(res.data.results);
@@ -42,6 +48,18 @@ export const fetchProduct = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+// export const fetchProduct = (id) => async (dispatch) => {
+//   try {
+//     const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+//     // console.log(res.data.results);
+//     await dispatch(setIsLoading(true));
+//     await dispatch(setProduct(res.data));
+//     await dispatch(setIsLoading(false));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // export const ProductDetail = () => async (dispatch) => {
 //   try {

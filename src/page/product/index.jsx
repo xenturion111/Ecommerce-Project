@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {addItem, delItem} from '../../store/action/action'
+import Spinner from '../../components/loading/spinner'
+// , fetchProduct
 import './index.css'
 import { NavLink } from 'react-router-dom';
 
 const ProductDetail = () => {
+    // const {product, isLoading} = useSelector((state) => state);
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
     const {id} = useParams()
@@ -19,10 +22,12 @@ const ProductDetail = () => {
         setLoading(false);
       }
       getProduct();
+      // dispatch(fetchProduct(id));
     }, [])
 
 
     const dispatch = useDispatch();
+
     const handleCart = (product) => {
       if(cartBtn === "Add to Shopping Cart") {
         dispatch(addItem(product));
@@ -32,7 +37,6 @@ const ProductDetail = () => {
         setCartBtn("Add to Shopping Cart");
       }
     } 
-
     // const Loading = () => {
     //   return (
     //     <>
@@ -43,7 +47,8 @@ const ProductDetail = () => {
 
   return (
     <div className="container">
-
+    {loading === false ? (
+        <>
         <div className="left-column">
             <img src={product.image} alt="Product title" />
         </div>
@@ -64,6 +69,10 @@ const ProductDetail = () => {
           </div>
         </div>
         </div>
+        </>
+    ) : (
+      <Spinner />
+    )}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 const initialState = {
     products: [],
+    // product: [],
     addItem: [],
   };
   
@@ -10,6 +11,11 @@ const initialState = {
           ...state,
           products: action.payload,
         };
+      // case "SET_PRODUCT":
+      //   return {
+      //     ...state,
+      //     products: action.payload,
+      //   };
       case "SET_ISLOADING":
         return {
           ...state,
