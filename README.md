@@ -1,0 +1,3 @@
+# Ecommerce-Project
+
+masih sangat banyak bug, dan sedang dalam perbaikan...
