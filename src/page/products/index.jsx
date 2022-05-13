@@ -5,6 +5,7 @@ import './index.css'
 import Buttons from '../../components/button/index'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,10 @@ const Products = () => {
                   <span className="productCategory">{data.category}</span>
                   <p className="productDesc">{data.description}</p>
                   
-                  <Buttons text='BUY' /> <br />
+                  <NavLink style={{textDecoration: 'none'}} to={`/products/${data.id}`} class>
+                    <Buttons text='BUY' />
+                  </NavLink>
+                  <br />
                   <span className="productPrice">$ {data.price}</span>
                   
                 </div> 

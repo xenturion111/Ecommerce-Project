@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './index.css'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,6 +17,8 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Logo from '../../assets/image/Logo.png'
 import NavLink from './link/index'
 import {Link, useNavigate} from 'react-router-dom'
+import { useSelector } from "react-redux";
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -79,14 +80,27 @@ const Navbar = () => {
     handleMobileMenuClose();
   };
 
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    let loginToken = localStorage.getItem('token')
+    if (loginToken) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/");
+    setIsLogin(false)
   };
 
   const menuId = 'primary-search-account-menu';
@@ -106,10 +120,19 @@ const Navbar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link  style={{ textDecoration: 'none', color: '#101E29' }} to='/login' className='navLink'>Login</Link></MenuItem>
-      {localStorage.getItem("token") && (
+    
+
+    {isLogin ? (
+      <div>
+        <MenuItem><Link style={{ textDecoration: 'none', color: '#101E29' }}  to='/Profile' className='navLink'>Profile</Link></MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      )} 
+      </div>
+       
+    ) :
+    (
+      <MenuItem onClick={handleMenuClose}><Link  style={{ textDecoration: 'none', color: '#101E29' }} to='/login' className='navLink'>Login</Link></MenuItem>
+    )}
+
     </Menu>
   );
 
@@ -143,18 +166,7 @@ const Navbar = () => {
         </IconButton>
         <p>Cart</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+
     </Menu>
   );
   return (
